@@ -250,7 +250,7 @@ class ObservatorioTest : DescribeSpec({
             observatorio.paisesConMasPoblacion().shouldBe(containAll("Brazil", "China", "Nigeria", "Argentina", "Bolivia"))
             observatorio.paisesConMasPoblacion().size.shouldBe(5)
         }
-        
+
         it("El continente con más poblacion es Asia") {
             every { apiNueva.todosLosPaises() } returns listOf(
                 Country(name = "Brazil",
