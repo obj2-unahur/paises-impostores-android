@@ -2,4 +2,14 @@
     <string name="app_name">Paises</string>
     <string name="ingrese_el_nombre_de_un_pais">Ingrese el nombre de un país</string>
     <string name="buscar">Buscar</string>
+    <string name="que_desea_hacer">¿Qué desea hacer?</string>
+    <string name="ver_detalle_de_un_pais">Ver detalle de un país</string>
+    <string name="relacionar_dos_paises">Relacionar dos paises</string>
+    <string name="ver_estadisticas_generales">Ver estadísticas generales</string>
+    <string name="bandera">Bandera:</string>
+    <string name="nombre">Nombre:</string>
+    <string name="codigo">Código</string>
+    <string name="poblacion">Población</string>
+    <string name="continente">Continente</string>
+    <string name="no_se_encontro_el_pais">No se encontró el país</string>
 </resources>

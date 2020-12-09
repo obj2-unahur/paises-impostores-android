@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".activities.MainActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/ingrese_el_nombre_de_un_pais"
+        />
+
+    <EditText
+        android:id="@+id/inputPais"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        tools:ignore="Autofill,LabelFor" />
+
+    <Button
+        android:id="@+id/botonBuscar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/buscar"
+        />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        tools:visibility="visible"
+        />
+
+    <LinearLayout
+        android:id="@+id/resultados"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:visibility="visible"
+        >
+        <!--
+            El tools:visibility="visible" hace que por más que el default sea "gone", en la preview se pueda visualizar.
+            Todo lo que esté dentro del namespace "tools" no será utilizado durante la ejecución.
+        -->
+
+        <ar.edu.unahur.obj2.claseBonusKotlinAndroid.widgets.CampoView
+            android:id="@+id/campoNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:label="@string/nombre"
+            />
+        <ar.edu.unahur.obj2.claseBonusKotlinAndroid.widgets.CampoView
+            android:id="@+id/campoCodigo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:label="@string/codigo"
+            />
+        <ar.edu.unahur.obj2.claseBonusKotlinAndroid.widgets.CampoView
+            android:id="@+id/campoPoblacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:label="@string/poblacion"
+            />
+        <ar.edu.unahur.obj2.claseBonusKotlinAndroid.widgets.CampoView
+            android:id="@+id/campoContinente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:label="@string/continente"
+            />
+        <ImageView
+            android:id="@+id/bandera"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            tools:ignore="ContentDescription"
+            tools:src="@android:drawable/picture_frame"
+            />
+    </LinearLayout>
+</LinearLayout>

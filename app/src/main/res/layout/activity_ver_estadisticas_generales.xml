@@ -10,30 +10,36 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/que_desea_hacer"
+        android:text="@string/ingrese_el_nombre_de_un_pais"
         />
 
-    <Button
-        android:id="@+id/botonDetalle"
+    <EditText
+        android:id="@+id/inputPais"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/ver_detalle_de_un_pais"
-        />
+        android:inputType="text"
+        tools:ignore="Autofill,LabelFor" />
 
     <Button
-        android:id="@+id/botonRelacionar"
+        android:id="@+id/botonBuscar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/relacionar_dos_paises"
+        android:text="@string/buscar"
         />
 
-    <Button
-        android:id="@+id/botonEstadisticas"
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        tools:visibility="visible"
+        />
+
+    <ImageView
+        android:id="@+id/bandera"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/ver_estadisticas_generales"
-        />
+        tools:ignore="ContentDescription" />
+
 </LinearLayout>

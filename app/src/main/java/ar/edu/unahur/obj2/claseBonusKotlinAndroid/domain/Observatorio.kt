@@ -3,12 +3,18 @@ package ar.edu.unahur.obj2.claseBonusKotlinAndroid.domain
 import ar.edu.unahur.obj2.claseBonusKotlinAndroid.apis.RestCountriesAPI
 import ar.edu.unahur.obj2.claseBonusKotlinAndroid.apis.adapters.PaisAdapter
 import ar.edu.unahur.obj2.claseBonusKotlinAndroid.utils.sumByLong
+import java.lang.RuntimeException
 
 class Observatorio(private val api: RestCountriesAPI = RestCountriesAPI()) {
     private val adapter = PaisAdapter(api)
 
-    fun paisConNombre(nombre:String) =
-        adapter.adaptar(api.buscarPaisesPorNombre(nombre).first())
+    fun paisConNombre(nombre:String): Pais {
+        try {
+            return adapter.adaptar(api.buscarPaisesPorNombre(nombre).first())
+        } catch (e: NoSuchElementException) {
+            throw PaisNoEncontradoException()
+        }
+    }
 
     fun sonLimitrofes(pais1: String, pais2: String) =
         paisConNombre(pais1).esLimitrofe(paisConNombre(pais2))
@@ -47,3 +53,5 @@ class Observatorio(private val api: RestCountriesAPI = RestCountriesAPI()) {
     private fun habitantesDeUnContinente(continente: String, paises: List<Pais>) =
         paises.filter { pais -> pais.continente == continente }.sumByLong { pais -> pais.poblacion }
 }
+
+class PaisNoEncontradoException : RuntimeException()
