@@ -7,7 +7,7 @@ import kotlinx.android.synthetic.main.activity_ver_estadisticas_generales.*
 import kotlinx.coroutines.launch
 
 class VerEstadisticasGeneralesActivity : BaseActivity(R.layout.activity_ver_estadisticas_generales) {
-    private val observatorio = Observatorio()
+    private val observatorio = Observatorio.instance
 
     override fun configurarVista() {
         estaCargando.observe(this) { estaCargando ->

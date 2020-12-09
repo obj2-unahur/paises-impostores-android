@@ -10,7 +10,7 @@ open class Pais(
     val idiomasOficiales : List<String>,
     val paisesLimitrofes : List<Pais>
 ) {
-    fun esLimitrofe(otroPais: Pais): Boolean {
+    fun esLimitrofeCon(otroPais: Pais): Boolean {
         val nombreDePaisesLimitrofes = paisesLimitrofes.map { pais -> pais.nombre }
         return nombreDePaisesLimitrofes.contains(otroPais.nombre)
     }
@@ -18,9 +18,10 @@ open class Pais(
     fun necesitaTraduccionCon(otroPais: Pais) =
         otroPais.idiomasOficiales.intersect(idiomasOficiales).isEmpty()
 
-    fun compartenBloquesRegionales(otroPais: Pais) =
+    fun sonPotencialmenteAliadosCon(otroPais: Pais) =
+        !necesitaTraduccionCon(otroPais) && compartenBloquesRegionalesCon(otroPais)
+
+    private fun compartenBloquesRegionalesCon(otroPais: Pais) =
         otroPais.bloquesRegionales.intersect(bloquesRegionales).isNotEmpty()
 
-    fun sonAliadosPotenciales(otroPais: Pais) =
-        !necesitaTraduccionCon(otroPais) && compartenBloquesRegionales(otroPais)
 }

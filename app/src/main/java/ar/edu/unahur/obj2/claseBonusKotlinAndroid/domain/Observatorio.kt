@@ -10,6 +10,10 @@ class Observatorio(private val api: RestCountriesAPI = RestCountriesAPI()) {
         api.todosLosPaises().map { country -> adapter.adaptarSinLimitrofes(country) }
     }
 
+    companion object {
+        var instance = Observatorio()
+    }
+
     fun paisConNombre(nombre:String): Pais {
         try {
             return adapter.adaptar(api.buscarPaisesPorNombre(nombre).first())
@@ -23,9 +27,9 @@ class Observatorio(private val api: RestCountriesAPI = RestCountriesAPI()) {
         val pais2 = paisConNombre(otroPais)
 
         return RelacionPaises(
-            pais1.esLimitrofe(pais2),
+            pais1.esLimitrofeCon(pais2),
             pais1.necesitaTraduccionCon(pais2),
-            pais1.sonAliadosPotenciales(pais2)
+            pais1.sonPotencialmenteAliadosCon(pais2)
         )
     }
 
@@ -62,5 +66,5 @@ class PaisNoEncontradoException : RuntimeException()
 data class RelacionPaises(
     val sonLimitrofes: Boolean,
     val necesitanTraduccion: Boolean,
-    val sonAliadosPotenciales: Boolean
+    val sonPotencialmenteAliados: Boolean
 )

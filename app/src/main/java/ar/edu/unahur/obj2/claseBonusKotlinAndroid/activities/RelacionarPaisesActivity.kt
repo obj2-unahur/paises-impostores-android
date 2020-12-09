@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.activity_relacionar_paises.*
 import kotlinx.coroutines.launch
 
 class RelacionarPaisesActivity : BaseActivity(R.layout.activity_relacionar_paises) {
-    private val observatorio = Observatorio()
+    private val observatorio = Observatorio.instance
     private val nombrePais1: String get() = inputPais1.text.toString()
     private val nombrePais2: String get() = inputPais2.text.toString()
 
@@ -33,7 +33,7 @@ class RelacionarPaisesActivity : BaseActivity(R.layout.activity_relacionar_paise
 
             campoSonLimitrofes.contenido = relacion.sonLimitrofes.siONo()
             campoNecesitanTraduccion.contenido = relacion.necesitanTraduccion.siONo()
-            campoSonPotencialesAliados.contenido = relacion.sonAliadosPotenciales.siONo()
+            campoSonPotencialesAliados.contenido = relacion.sonPotencialmenteAliados.siONo()
         } catch(e: PaisNoEncontradoException) {
             mostrarCartelito(R.string.no_se_encontro_alguno_de_los_paises)
             resultados.hide()

@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.activity_ver_detalle_pais.*
 import kotlinx.coroutines.launch
 
 class VerDetallePaisActivity : BaseActivity(R.layout.activity_ver_detalle_pais) {
-    private val observatorio = Observatorio()
+    private val observatorio = Observatorio.instance
     private val nombrePais: String get() = inputPais.text.toString()
 
     override fun configurarVista() {

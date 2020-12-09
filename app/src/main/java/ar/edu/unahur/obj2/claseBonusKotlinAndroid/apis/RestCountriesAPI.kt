@@ -58,7 +58,7 @@ data class Country(
     val capital: String,
     val region: String,
     val population: Long,
-    val flag: String,
+    val flag: String = "",
     val borders: List<String>,
     val languages: List<Language>,
     val regionalBlocs: List<RegionalBloc>
