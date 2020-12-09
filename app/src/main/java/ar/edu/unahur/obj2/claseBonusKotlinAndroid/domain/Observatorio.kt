@@ -26,7 +26,7 @@ class Observatorio(private val api: RestCountriesAPI = RestCountriesAPI()) {
         paisConNombre(pais1).sonAliadosPotenciales(paisConNombre(pais2))
 
     fun paisesConMasPoblacion(): List<String> {
-        val paises = api.todosLosPaises().map { pais -> adapter.adaptar(pais) }.toMutableList()
+        val paises = api.todosLosPaises().map { pais -> adapter.adaptarSinLimitrofes(pais) }.toMutableList()
 
         val paisesConMayorPoblacion = mutableListOf<Pais>()
         repeat(5) {
@@ -39,7 +39,7 @@ class Observatorio(private val api: RestCountriesAPI = RestCountriesAPI()) {
     }
 
     fun continenteConMasHabitantes(): String {
-        val paises = api.todosLosPaises().map { country -> adapter.adaptar(country) }
+        val paises = api.todosLosPaises().map { country -> adapter.adaptarSinLimitrofes(country) }
         val continentes = paises.map { pais -> pais.continente }.toSet()
 
         return continentes.maxByOrNull { continente ->

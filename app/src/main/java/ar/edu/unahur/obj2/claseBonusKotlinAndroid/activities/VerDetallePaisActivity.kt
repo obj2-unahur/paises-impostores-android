@@ -18,9 +18,8 @@ class VerDetallePaisActivity : BaseActivity(R.layout.activity_ver_detalle_pais) 
 
     override fun configurarVista() {
         estaCargando.observe(this) { estaCargando ->
-            botonBuscar.setVisible(!estaCargando)
             progressBar.setVisible(estaCargando)
-
+            botonBuscar.setVisible(!estaCargando)
             resultados.setVisible(!estaCargando)
         }
 

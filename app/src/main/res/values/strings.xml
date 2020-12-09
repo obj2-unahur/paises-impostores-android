@@ -12,4 +12,6 @@
     <string name="poblacion">Población</string>
     <string name="continente">Continente</string>
     <string name="no_se_encontro_el_pais">No se encontró el país</string>
+    <string name="paises_con_mas_poblacion">Países con más población:</string>
+    <string name="continente_con_mas_habitantes">Continente con más habitantes</string>
 </resources>

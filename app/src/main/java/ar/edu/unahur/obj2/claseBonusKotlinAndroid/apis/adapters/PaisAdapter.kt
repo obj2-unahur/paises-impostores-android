@@ -16,7 +16,7 @@ class PaisAdapter(private val api: RestCountriesAPI = RestCountriesAPI()) {
         )
     }
 
-    private fun adaptarSinLimitrofes(country: Country): Pais {
+    fun adaptarSinLimitrofes(country: Country): Pais {
         val bloquesRegionales = adaptarBloquesRegionales(country)
         val lenguajes = adaptarLenguajes(country)
 

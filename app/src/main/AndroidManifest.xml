@@ -20,6 +20,8 @@
         </activity>
 
         <activity android:name=".activities.VerDetallePaisActivity" />
+        <activity android:name=".activities.RelacionarPaisesActivity" />
+        <activity android:name=".activities.VerEstadisticasGeneralesActivity" />
     </application>
 
 </manifest>

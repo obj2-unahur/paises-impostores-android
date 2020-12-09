@@ -8,6 +8,9 @@ import ar.edu.unahur.obj2.claseBonusKotlinAndroid.R
 import ar.edu.unahur.obj2.claseBonusKotlinAndroid.utils.withAttributes
 import kotlinx.android.synthetic.main.widget_campo.view.*
 
+// Custom view que representa una etiqueta y un valor (contenido) asociado a ella.
+// Su maquetado está en el archivo widget_campo.xml
+
 class CampoView : FrameLayout {
     init {
         LayoutInflater
