@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Paises</string>
+    <string name="ingrese_el_nombre_de_un_pais">Ingrese el nombre de un país</string>
+    <string name="buscar">Buscar</string>
+</resources>
