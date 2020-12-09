@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,21 +12,30 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/ingrese_el_nombre_de_un_pais"
+        android:text="@string/ingrese_dos_nombres_de_pais"
         />
 
     <EditText
-        android:id="@+id/inputPais"
+        android:id="@+id/inputPais1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
+        android:hint="@string/pais_1"
+        tools:ignore="Autofill,LabelFor" />
+
+    <EditText
+        android:id="@+id/inputPais2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:hint="@string/pais_2"
         tools:ignore="Autofill,LabelFor" />
 
     <Button
         android:id="@+id/botonBuscar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/buscar"
+        android:text="@string/relacionar"
         />
 
     <ProgressBar
@@ -36,10 +47,34 @@
         tools:visibility="visible"
         />
 
-    <ImageView
-        android:id="@+id/bandera"
+    <LinearLayout
+        android:id="@+id/resultados"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:ignore="ContentDescription" />
-
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:visibility="visible"
+        >
+        <ar.edu.unahur.obj2.claseBonusKotlinAndroid.widgets.CampoView
+            android:id="@+id/campoSonLimitrofes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:label="@string/son_limitrofes"
+            />
+        <ar.edu.unahur.obj2.claseBonusKotlinAndroid.widgets.CampoView
+            android:id="@+id/campoNecesitanTraduccion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:label="@string/necesitan_traduccion"
+            />
+        <ar.edu.unahur.obj2.claseBonusKotlinAndroid.widgets.CampoView
+            android:id="@+id/campoSonPotencialesAliados"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:label="@string/son_potenciales_aliados"
+            />
+    </LinearLayout>
 </LinearLayout>

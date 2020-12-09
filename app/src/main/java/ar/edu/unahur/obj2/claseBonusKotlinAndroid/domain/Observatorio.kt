@@ -3,7 +3,6 @@ package ar.edu.unahur.obj2.claseBonusKotlinAndroid.domain
 import ar.edu.unahur.obj2.claseBonusKotlinAndroid.apis.RestCountriesAPI
 import ar.edu.unahur.obj2.claseBonusKotlinAndroid.apis.adapters.PaisAdapter
 import ar.edu.unahur.obj2.claseBonusKotlinAndroid.utils.sumByLong
-import java.lang.RuntimeException
 
 class Observatorio(private val api: RestCountriesAPI = RestCountriesAPI()) {
     private val adapter = PaisAdapter(api)
@@ -16,14 +15,16 @@ class Observatorio(private val api: RestCountriesAPI = RestCountriesAPI()) {
         }
     }
 
-    fun sonLimitrofes(pais1: String, pais2: String) =
-        paisConNombre(pais1).esLimitrofe(paisConNombre(pais2))
+    fun relacionEntre(unPais: String, otroPais: String): RelacionPaises {
+        val pais1 = paisConNombre(unPais)
+        val pais2 = paisConNombre(otroPais)
 
-    fun necesitanTraduccion(pais1: String, pais2: String) =
-        paisConNombre(pais1).necesitaTraduccionCon(paisConNombre(pais2))
-
-    fun sonPotencialmenteAliados(pais1: String, pais2: String) =
-        paisConNombre(pais1).sonAliadosPotenciales(paisConNombre(pais2))
+        return RelacionPaises(
+            pais1.esLimitrofe(pais2),
+            pais1.necesitaTraduccionCon(pais2),
+            pais1.sonAliadosPotenciales(pais2)
+        )
+    }
 
     fun paisesConMasPoblacion(): List<String> {
         val paises = api.todosLosPaises().map { pais -> adapter.adaptarSinLimitrofes(pais) }.toMutableList()
@@ -55,3 +56,9 @@ class Observatorio(private val api: RestCountriesAPI = RestCountriesAPI()) {
 }
 
 class PaisNoEncontradoException : RuntimeException()
+
+data class RelacionPaises(
+    val sonLimitrofes: Boolean,
+    val necesitanTraduccion: Boolean,
+    val sonAliadosPotenciales: Boolean
+)

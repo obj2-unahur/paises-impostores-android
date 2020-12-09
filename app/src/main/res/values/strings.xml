@@ -14,4 +14,12 @@
     <string name="no_se_encontro_el_pais">No se encontró el país</string>
     <string name="paises_con_mas_poblacion">Países con más población:</string>
     <string name="continente_con_mas_habitantes">Continente con más habitantes</string>
+    <string name="ingrese_dos_nombres_de_pais">Ingrese dos nombres de país</string>
+    <string name="pais_1">País 1</string>
+    <string name="pais_2">País 2</string>
+    <string name="relacionar">Relacionar</string>
+    <string name="son_limitrofes">Son limítrofes</string>
+    <string name="necesitan_traduccion">Necesitan traducción</string>
+    <string name="son_potenciales_aliados">Son potenciales aliados</string>
+    <string name="no_se_encontro_alguno_de_los_paises">No se encontró alguno de los países</string>
 </resources>

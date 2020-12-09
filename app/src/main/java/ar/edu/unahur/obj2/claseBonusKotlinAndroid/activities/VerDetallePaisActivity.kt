@@ -1,6 +1,5 @@
 package ar.edu.unahur.obj2.claseBonusKotlinAndroid.activities
 
-import android.widget.Toast
 import ar.edu.unahur.obj2.claseBonusKotlinAndroid.R
 import ar.edu.unahur.obj2.claseBonusKotlinAndroid.domain.Observatorio
 import ar.edu.unahur.obj2.claseBonusKotlinAndroid.domain.Pais
@@ -13,8 +12,7 @@ import kotlinx.coroutines.launch
 
 class VerDetallePaisActivity : BaseActivity(R.layout.activity_ver_detalle_pais) {
     private val observatorio = Observatorio()
-    private val nombrePais: String get() =
-        inputPais.text.toString()
+    private val nombrePais: String get() = inputPais.text.toString()
 
     override fun configurarVista() {
         estaCargando.observe(this) { estaCargando ->
@@ -34,7 +32,7 @@ class VerDetallePaisActivity : BaseActivity(R.layout.activity_ver_detalle_pais) 
             val pais = conCarga { observatorio.paisConNombre(nombrePais) }
             mostrar(pais)
         } catch(e: PaisNoEncontradoException) {
-            Toast.makeText(this, getString(R.string.no_se_encontro_el_pais), Toast.LENGTH_LONG).show()
+            mostrarCartelito(R.string.no_se_encontro_el_pais)
             resultados.hide()
         }
     }

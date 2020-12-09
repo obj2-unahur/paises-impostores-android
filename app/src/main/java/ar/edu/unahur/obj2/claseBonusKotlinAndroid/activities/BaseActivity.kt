@@ -2,7 +2,9 @@ package ar.edu.unahur.obj2.claseBonusKotlinAndroid.activities
 
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.annotation.LayoutRes
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.CoroutineScope
@@ -24,7 +26,7 @@ abstract class BaseActivity(@LayoutRes private val layoutId: Int) : AppCompatAct
     protected open fun configurarVista() { }
 
     protected suspend fun <T> conCarga(accion: suspend () -> T): T {
-        estaCargando.value =true
+        estaCargando.value = true
 
         try {
             return withContext(Dispatchers.IO) { accion() }
@@ -36,5 +38,9 @@ abstract class BaseActivity(@LayoutRes private val layoutId: Int) : AppCompatAct
     protected fun esconderTeclado() {
         val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
+    }
+
+    protected fun mostrarCartelito(@StringRes idMensaje: Int) {
+        Toast.makeText(this, getString(idMensaje), Toast.LENGTH_LONG).show()
     }
 }
