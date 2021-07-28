@@ -46,8 +46,8 @@ class VerDetallePaisActivity : BaseActivity(R.layout.activity_ver_detalle_pais) 
         campoPoblacion.contenido = pais.poblacion.toString()
         campoContinente.contenido = pais.continente
 
-        campoEsPlurinacional.contenido = pais.esPlurinacional().siONo()
-        campoEsUnaIsla.contenido = pais.esUnaIsla().siONo()
+        campoEsPlurinacional.contenido = pais.esPlurinacional().siONo(this)
+        campoEsUnaIsla.contenido = pais.esUnaIsla().siONo(this)
         campoDensidadPoblacional.contenido = pais.densidadPoblacional().conDosDecimales()
         campoVecinoMasPoblado.contenido = pais.vecinoMasPoblado().nombre
     }

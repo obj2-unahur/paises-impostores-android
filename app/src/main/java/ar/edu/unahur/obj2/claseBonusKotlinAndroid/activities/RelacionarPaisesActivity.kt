@@ -47,6 +47,6 @@ class RelacionarPaisesActivity : BaseActivity(R.layout.activity_relacionar_paise
     }
 
     private suspend fun cargarPregunta(vista: CampoView, carga: () -> Boolean) {
-        vista.contenido = conCarga { carga() }.siONo()
+        vista.contenido = conCarga { carga() }.siONo(this)
     }
 }

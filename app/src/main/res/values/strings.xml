@@ -26,4 +26,6 @@
     <string name="es_una_isla">Es una isla</string>
     <string name="densidad_poblacional">Densidad poblacional</string>
     <string name="vecino_mas_poblado">Vecino más poblado</string>
+    <string name="si">Sí</string>
+    <string name="no">No</string>
 </resources>
