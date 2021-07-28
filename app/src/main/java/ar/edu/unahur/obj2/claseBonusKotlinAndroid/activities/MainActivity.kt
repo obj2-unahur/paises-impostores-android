@@ -8,9 +8,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : BaseActivity(R.layout.activity_main) {
     override fun configurarVista() {
         listOf(
-            Boton(botonDetalle) { Intent(this, VerDetallePaisActivity::class.java) },
-            Boton(botonRelacionar) { Intent(this, RelacionarPaisesActivity::class.java) },
-            Boton(botonEstadisticas) { Intent(this, VerEstadisticasGeneralesActivity::class.java) }
+            Pair(botonDetalle, { Intent(this, VerDetallePaisActivity::class.java) }),
+            Pair(botonRelacionar, { Intent(this, RelacionarPaisesActivity::class.java) }),
+            Pair(botonEstadisticas, { Intent(this, VerEstadisticasGeneralesActivity::class.java) })
         ).forEach { (view, intent) ->
             view.setOnClickListener {
                 startActivity(intent())
@@ -18,8 +18,3 @@ class MainActivity : BaseActivity(R.layout.activity_main) {
         }
     }
 }
-
-data class Boton(
-    val view: View,
-    val intent: () -> Intent
-)
