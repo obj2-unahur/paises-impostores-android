@@ -2,69 +2,50 @@ package ar.edu.unahur.obj2.claseBonusKotlinAndroid.domain
 
 import ar.edu.unahur.obj2.claseBonusKotlinAndroid.apis.RestCountriesAPI
 import ar.edu.unahur.obj2.claseBonusKotlinAndroid.apis.adapters.PaisAdapter
-import ar.edu.unahur.obj2.claseBonusKotlinAndroid.utils.sumByLong
 
-class Observatorio(private val api: RestCountriesAPI = RestCountriesAPI()) {
-    private val adapter = PaisAdapter(api)
-    private val todosLosPaises: List<Pais> by lazy {
-        api.todosLosPaises().map { country -> adapter.adaptarSinLimitrofes(country) }
-    }
+object Observatorio {
+    var api: RestCountriesAPI = RestCountriesAPI()
 
-    companion object {
-        var instance = Observatorio()
-    }
-
-    fun paisConNombre(nombre:String): Pais {
+    fun todosLosPaises() = api.todosLosPaises().map { PaisAdapter.adaptarPaisSinLimitrofes(it) }
+    fun todosLosPaisesConLimitrofes() = api.todosLosPaises().map { PaisAdapter.adaptarPais(it) }
+    fun buscarPaisDeNombre(nombrePais: String) =
         try {
-            return adapter.adaptar(api.buscarPaisesPorNombre(nombre).first())
-        } catch (e: NoSuchElementException) {
+            PaisAdapter.adaptarPais(api.buscarPaisesPorNombre(nombrePais).first())
+        } catch (e: Exception) {
             throw PaisNoEncontradoException()
         }
+
+    fun sonLimitrofes(nombrePais1: String, nombrePais2: String): Boolean {
+        val pais1 = buscarPaisDeNombre(nombrePais1)
+        val pais2 = buscarPaisDeNombre(nombrePais2)
+
+        return pais1.esLimitrofeCon(pais2)
     }
 
-    fun relacionEntre(unPais: String, otroPais: String): RelacionPaises {
-        val pais1 = paisConNombre(unPais)
-        val pais2 = paisConNombre(otroPais)
+    fun necesitanTraduccion(nombrePais1: String, nombrePais2: String) =
+        buscarPaisDeNombre(nombrePais1).necesitaTraduccion(buscarPaisDeNombre(nombrePais2))
 
-        return RelacionPaises(
-            pais1.esLimitrofeCon(pais2),
-            pais1.necesitaTraduccionCon(pais2),
-            pais1.sonPotencialmenteAliadosCon(pais2)
-        )
-    }
+    fun sonPotencialesAliados(nombrePais1: String, nombrePais2: String) =
+        buscarPaisDeNombre(nombrePais1).esPotencialAliadoDe(buscarPaisDeNombre(nombrePais2))
 
-    fun paisesConMasPoblacion(): List<String> {
-        val paises = todosLosPaises.toMutableList()
-        val paisesConMayorPoblacion = mutableListOf<Pais>()
+    fun paisesOrdenadosPorDensidad() =
+        todosLosPaises().sortedByDescending { it.densidadPoblacional() }
 
-        repeat(5) {
-            val paisConMayorPoblacion = paises.maxByOrNull { pais -> pais.poblacion }!!
-            paisesConMayorPoblacion.add(paisConMayorPoblacion)
-            paises.remove(paisConMayorPoblacion)
-        }
+    fun top5PaisesMasDensos() = paisesOrdenadosPorDensidad().take(5)
+    fun codigoIso5PaisesMasDensos() = top5PaisesMasDensos().map { it.codigoISO3 }
+    fun paisesDeContinente(continente: String) =
+        todosLosPaises().filter { it.continente == continente }
 
-        return paisesConMayorPoblacion.map { pais -> pais.nombre }
-    }
+    fun cantidadDePlurinacionalesDeContinente(continente: String) =
+        paisesDeContinente(continente).count { it.esPlurinacional() }
 
-    fun continenteConMasHabitantes(): String {
-        val continentes = todosLosPaises.map { pais -> pais.continente }.toSet()
+    fun todosLosContinentes() = todosLosPaises().map { it.continente }.toSet()
+    fun continenteConMasPlurinacionales() = todosLosContinentes().maxByOrNull { continente ->
+        cantidadDePlurinacionalesDeContinente(continente)
+    }!!
 
-        return continentes.maxByOrNull { continente ->
-            habitantesDeUnContinente(
-                continente,
-                todosLosPaises
-            )
-        }!!
-    }
-
-    private fun habitantesDeUnContinente(continente: String, paises: List<Pais>) =
-        paises.filter { pais -> pais.continente == continente }.sumByLong { pais -> pais.poblacion }
+    fun paisesIsla() = todosLosPaisesConLimitrofes().filter { it.esUnaIsla() }
+    fun promedioDeDensidadDePaisesIsla() = paisesIsla().map { it.densidadPoblacional() }.average()
 }
 
 class PaisNoEncontradoException : RuntimeException()
-
-data class RelacionPaises(
-    val sonLimitrofes: Boolean,
-    val necesitanTraduccion: Boolean,
-    val sonPotencialmenteAliados: Boolean
-)

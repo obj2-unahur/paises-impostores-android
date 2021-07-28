@@ -37,54 +37,92 @@
         tools:visibility="visible"
         />
 
-    <LinearLayout
-        android:id="@+id/resultados"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:visibility="gone"
-        tools:visibility="visible"
         >
-        <!--
-            El tools:visibility="visible" hace que por más que el default sea "gone", en la preview se pueda visualizar.
-            Todo lo que esté dentro del namespace "tools" no será utilizado durante la ejecución.
-        -->
+        <LinearLayout
+            android:id="@+id/resultados"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            tools:visibility="visible"
+            >
+            <!--
+                El tools:visibility="visible" hace que por más que el default sea "gone", en la preview se pueda visualizar.
+                Todo lo que esté dentro del namespace "tools" no será utilizado durante la ejecución.
+            -->
 
-        <ar.edu.unahur.obj2.claseBonusKotlinAndroid.widgets.CampoView
-            android:id="@+id/campoNombre"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:label="@string/nombre"
-            />
-        <ar.edu.unahur.obj2.claseBonusKotlinAndroid.widgets.CampoView
-            android:id="@+id/campoCodigo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:label="@string/codigo"
-            />
-        <ar.edu.unahur.obj2.claseBonusKotlinAndroid.widgets.CampoView
-            android:id="@+id/campoPoblacion"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:label="@string/poblacion"
-            />
-        <ar.edu.unahur.obj2.claseBonusKotlinAndroid.widgets.CampoView
-            android:id="@+id/campoContinente"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:label="@string/continente"
-            />
-        <ImageView
-            android:id="@+id/bandera"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            tools:ignore="ContentDescription"
-            tools:src="@android:drawable/picture_frame"
-            />
-    </LinearLayout>
+            <ar.edu.unahur.obj2.claseBonusKotlinAndroid.widgets.CampoView
+                android:id="@+id/campoNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margenVertical"
+                app:label="@string/nombre"
+                />
+            <ar.edu.unahur.obj2.claseBonusKotlinAndroid.widgets.CampoView
+                android:id="@+id/campoCodigo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margenVertical"
+                app:label="@string/codigo"
+                />
+            <ar.edu.unahur.obj2.claseBonusKotlinAndroid.widgets.CampoView
+                android:id="@+id/campoPoblacion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margenVertical"
+                app:label="@string/poblacion"
+                />
+            <ar.edu.unahur.obj2.claseBonusKotlinAndroid.widgets.CampoView
+                android:id="@+id/campoContinente"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margenVertical"
+                app:label="@string/continente"
+                />
+
+            <ImageView
+                android:id="@+id/bandera"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:layout_marginTop="@dimen/margenVertical"
+                tools:ignore="ContentDescription"
+                tools:src="@android:drawable/picture_frame"
+                />
+
+            <ar.edu.unahur.obj2.claseBonusKotlinAndroid.widgets.CampoView
+                android:id="@+id/campoEsPlurinacional"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margenVertical"
+                app:label="@string/es_plurinacional"
+                />
+
+            <ar.edu.unahur.obj2.claseBonusKotlinAndroid.widgets.CampoView
+                android:id="@+id/campoEsUnaIsla"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margenVertical"
+                app:label="@string/es_una_isla"
+                />
+
+            <ar.edu.unahur.obj2.claseBonusKotlinAndroid.widgets.CampoView
+                android:id="@+id/campoDensidadPoblacional"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margenVertical"
+                app:label="@string/densidad_poblacional"
+                />
+
+            <ar.edu.unahur.obj2.claseBonusKotlinAndroid.widgets.CampoView
+                android:id="@+id/campoVecinoMasPoblado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margenVertical"
+                app:label="@string/vecino_mas_poblado"
+                />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

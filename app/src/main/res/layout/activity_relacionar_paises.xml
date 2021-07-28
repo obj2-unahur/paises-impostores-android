@@ -59,21 +59,21 @@
             android:id="@+id/campoSonLimitrofes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/margenVertical"
             app:label="@string/son_limitrofes"
             />
         <ar.edu.unahur.obj2.claseBonusKotlinAndroid.widgets.CampoView
             android:id="@+id/campoNecesitanTraduccion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/margenVertical"
             app:label="@string/necesitan_traduccion"
             />
         <ar.edu.unahur.obj2.claseBonusKotlinAndroid.widgets.CampoView
             android:id="@+id/campoSonPotencialesAliados"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/margenVertical"
             app:label="@string/son_potenciales_aliados"
             />
     </LinearLayout>

@@ -24,18 +24,25 @@
         tools:visibility="visible"
         >
         <ar.edu.unahur.obj2.claseBonusKotlinAndroid.widgets.CampoView
-            android:id="@+id/campoPaisesConMasPoblacion"
+            android:id="@+id/campoPaisesMasDensos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:label="@string/paises_con_mas_poblacion"
+            android:layout_marginTop="@dimen/margenVertical"
+            app:label="@string/paises_con_mayor_densidad_poblacional"
             />
         <ar.edu.unahur.obj2.claseBonusKotlinAndroid.widgets.CampoView
-            android:id="@+id/campoContinenteConMasHabitantes"
+            android:id="@+id/campoContinenteConMasPlurinacionales"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:label="@string/continente_con_mas_habitantes"
+            android:layout_marginTop="@dimen/margenVertical"
+            app:label="@string/continente_con_mas_plurinacionales"
+            />
+        <ar.edu.unahur.obj2.claseBonusKotlinAndroid.widgets.CampoView
+            android:id="@+id/campoPromedioDensidadPoblacionalPaisesIsla"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margenVertical"
+            app:label="@string/promedio_densidad_poblacional_paises_isla"
             />
     </LinearLayout>
 </LinearLayout>

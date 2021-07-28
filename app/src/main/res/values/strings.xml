@@ -6,14 +6,14 @@
     <string name="ver_detalle_de_un_pais">Ver detalle de un país</string>
     <string name="relacionar_dos_paises">Relacionar dos paises</string>
     <string name="ver_estadisticas_generales">Ver estadísticas generales</string>
-    <string name="bandera">Bandera:</string>
-    <string name="nombre">Nombre:</string>
+    <string name="nombre">Nombre</string>
     <string name="codigo">Código</string>
     <string name="poblacion">Población</string>
     <string name="continente">Continente</string>
     <string name="no_se_encontro_el_pais">No se encontró el país</string>
-    <string name="paises_con_mas_poblacion">Países con más población:</string>
-    <string name="continente_con_mas_habitantes">Continente con más habitantes</string>
+    <string name="paises_con_mayor_densidad_poblacional">Códigos ISO de países con mayor densidad poblacional</string>
+    <string name="continente_con_mas_plurinacionales">Continente con más países plurinacionales</string>
+    <string name="promedio_densidad_poblacional_paises_isla">Promedio de densidad poblacional de los países-isla</string>
     <string name="ingrese_dos_nombres_de_pais">Ingrese dos nombres de país</string>
     <string name="pais_1">País 1</string>
     <string name="pais_2">País 2</string>
@@ -22,4 +22,8 @@
     <string name="necesitan_traduccion">Necesitan traducción</string>
     <string name="son_potenciales_aliados">Son potenciales aliados</string>
     <string name="no_se_encontro_alguno_de_los_paises">No se encontró alguno de los países</string>
+    <string name="es_plurinacional">Es plurinacional</string>
+    <string name="es_una_isla">Es una isla</string>
+    <string name="densidad_poblacional">Densidad poblacional</string>
+    <string name="vecino_mas_poblado">Vecino más poblado</string>
 </resources>

@@ -2,13 +2,12 @@ package ar.edu.unahur.obj2.claseBonusKotlinAndroid.activities
 
 import ar.edu.unahur.obj2.claseBonusKotlinAndroid.R
 import ar.edu.unahur.obj2.claseBonusKotlinAndroid.domain.Observatorio
+import ar.edu.unahur.obj2.claseBonusKotlinAndroid.utils.conDosDecimales
 import ar.edu.unahur.obj2.claseBonusKotlinAndroid.utils.setVisible
 import kotlinx.android.synthetic.main.activity_ver_estadisticas_generales.*
 import kotlinx.coroutines.launch
 
 class VerEstadisticasGeneralesActivity : BaseActivity(R.layout.activity_ver_estadisticas_generales) {
-    private val observatorio = Observatorio.instance
-
     override fun configurarVista() {
         estaCargando.observe(this) { estaCargando ->
             progressBar.setVisible(estaCargando)
@@ -19,10 +18,12 @@ class VerEstadisticasGeneralesActivity : BaseActivity(R.layout.activity_ver_esta
     }
 
     private suspend fun cargar() {
-        val paisesConMasPoblacion = conCarga { observatorio.paisesConMasPoblacion() }
-        val continenteConMasHabitantes = conCarga { observatorio.continenteConMasHabitantes() }
+        val codigoIso5PaisesMasDensos = conCarga { Observatorio.codigoIso5PaisesMasDensos() }
+        val continenteConMasPlurinacionales = conCarga { Observatorio.continenteConMasPlurinacionales() }
+        val promedioDeDensidadDePaisesIsla = conCarga { Observatorio.promedioDeDensidadDePaisesIsla() }
 
-        campoPaisesConMasPoblacion.contenido = paisesConMasPoblacion.joinToString("\n")
-        campoContinenteConMasHabitantes.contenido = continenteConMasHabitantes
+        campoPaisesMasDensos.contenido = codigoIso5PaisesMasDensos.joinToString("\n")
+        campoContinenteConMasPlurinacionales.contenido = continenteConMasPlurinacionales
+        campoPromedioDensidadPoblacionalPaisesIsla.contenido = promedioDeDensidadDePaisesIsla.conDosDecimales()
     }
 }

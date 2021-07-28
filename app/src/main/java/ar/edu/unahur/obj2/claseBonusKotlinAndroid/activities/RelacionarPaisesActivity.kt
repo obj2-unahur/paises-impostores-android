@@ -6,11 +6,11 @@ import ar.edu.unahur.obj2.claseBonusKotlinAndroid.domain.PaisNoEncontradoExcepti
 import ar.edu.unahur.obj2.claseBonusKotlinAndroid.utils.hide
 import ar.edu.unahur.obj2.claseBonusKotlinAndroid.utils.setVisible
 import ar.edu.unahur.obj2.claseBonusKotlinAndroid.utils.siONo
+import ar.edu.unahur.obj2.claseBonusKotlinAndroid.widgets.CampoView
 import kotlinx.android.synthetic.main.activity_relacionar_paises.*
 import kotlinx.coroutines.launch
 
 class RelacionarPaisesActivity : BaseActivity(R.layout.activity_relacionar_paises) {
-    private val observatorio = Observatorio.instance
     private val nombrePais1: String get() = inputPais1.text.toString()
     private val nombrePais2: String get() = inputPais2.text.toString()
 
@@ -29,14 +29,24 @@ class RelacionarPaisesActivity : BaseActivity(R.layout.activity_relacionar_paise
 
     private suspend fun buscar() {
         try {
-            val relacion = conCarga { observatorio.relacionEntre(nombrePais1, nombrePais2) }
+            cargarPregunta(campoSonLimitrofes) {
+                Observatorio.sonLimitrofes(nombrePais1, nombrePais2)
+            }
 
-            campoSonLimitrofes.contenido = relacion.sonLimitrofes.siONo()
-            campoNecesitanTraduccion.contenido = relacion.necesitanTraduccion.siONo()
-            campoSonPotencialesAliados.contenido = relacion.sonPotencialmenteAliados.siONo()
+            cargarPregunta(campoNecesitanTraduccion) {
+                Observatorio.necesitanTraduccion(nombrePais1, nombrePais2)
+            }
+
+            cargarPregunta(campoSonPotencialesAliados) {
+                Observatorio.sonPotencialesAliados(nombrePais1, nombrePais2)
+            }
         } catch(e: PaisNoEncontradoException) {
             mostrarCartelito(R.string.no_se_encontro_alguno_de_los_paises)
             resultados.hide()
         }
+    }
+
+    private suspend fun cargarPregunta(vista: CampoView, carga: () -> Boolean) {
+        vista.contenido = conCarga { carga() }.siONo()
     }
 }

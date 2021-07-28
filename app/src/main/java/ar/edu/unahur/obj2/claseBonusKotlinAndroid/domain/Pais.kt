@@ -1,27 +1,29 @@
 package ar.edu.unahur.obj2.claseBonusKotlinAndroid.domain
 
-open class Pais(
-    val nombre : String,
-    val codigo : String,
-    val poblacion : Long,
-    val continente : String,
-    val bandera: String,
-    val bloquesRegionales : List<String>,
-    val idiomasOficiales : List<String>,
-    val paisesLimitrofes : List<Pais>
+class Pais(
+    val nombre: String,
+    val codigoISO3: String,
+    val poblacion: Int,
+    val superficie: Double,
+    val continente: String,
+    val bloquesRegionales: List<String>,
+    val idiomas: List<String>,
+    val paisesLimitrofes: MutableList<Pais>,
+    val bandera: String? = null
 ) {
-    fun esLimitrofeCon(otroPais: Pais): Boolean {
-        val nombreDePaisesLimitrofes = paisesLimitrofes.map { pais -> pais.nombre }
-        return nombreDePaisesLimitrofes.contains(otroPais.nombre)
-    }
+    fun esPlurinacional() = idiomas.size > 1
+    fun esUnaIsla() = paisesLimitrofes.isEmpty()
+    fun densidadPoblacional() = poblacion / superficie
+    fun vecinoMasPoblado() = (paisesLimitrofes + this).maxByOrNull { it.poblacion }!!
+    fun esLimitrofeCon(pais: Pais) = paisesLimitrofes.map { it.nombre }.contains(pais.nombre)
+    fun necesitaTraduccion(pais: Pais) = cantidadDeIdiomasEnComun(pais) == 0
+    fun cantidadDeIdiomasEnComun(pais: Pais) = this.idiomas.intersect(pais.idiomas).size
+    fun esPotencialAliadoDe(pais: Pais) =
+        !this.necesitaTraduccion(pais) && this.comparteAlMenosUnBloqueRegionalCon(pais)
 
-    fun necesitaTraduccionCon(otroPais: Pais) =
-        otroPais.idiomasOficiales.intersect(idiomasOficiales).isEmpty()
+    fun cantidadDeBloquesRegionalesEnComun(pais: Pais) =
+        this.bloquesRegionales.intersect(pais.bloquesRegionales).size
 
-    fun sonPotencialmenteAliadosCon(otroPais: Pais) =
-        !necesitaTraduccionCon(otroPais) && compartenBloquesRegionalesCon(otroPais)
-
-    private fun compartenBloquesRegionalesCon(otroPais: Pais) =
-        otroPais.bloquesRegionales.intersect(bloquesRegionales).isNotEmpty()
-
+    fun comparteAlMenosUnBloqueRegionalCon(pais: Pais) =
+        this.cantidadDeBloquesRegionalesEnComun(pais) >= 1
 }
